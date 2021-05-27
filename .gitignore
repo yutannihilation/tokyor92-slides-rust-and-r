@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+*.local
+.remote-assets
+components.d.ts
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
