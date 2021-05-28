@@ -50,12 +50,21 @@ image: './images/book.jpg'
 
 # RユーザーのためのRStudio\[実践\]入門 第2版！
 
+---
+layout: section
+---
+
+# extendr
+
+<img src="/public/images/extendr-logo.png" width="600" />
+
 ------------------------------------------------------------------------
 
 # extendrとは？
 
 -   RustとRを連携させるためのフレームワーク
 -   RからRustを使うだけではなく、RustからRを使うこともできる（つまり、Rustの中でggplot2を呼び出してプロットしたり、とかできるらしい）
+-   なぜか私も中の人です…
 
 <img src="/public/images/extendr-logo.png" width="200" />
 
@@ -70,6 +79,15 @@ layout: statement
 → そこにRustがあるから！！<br>（誰か教えてください…）
 
 </v-clicks>
+
+------------------------------------------------------------------------
+
+# ※今日話さないこと
+
+-   Rustの何が素晴らしいのか
+-   Rust入門
+-   Rust側からRを操作する方法
+-   R MarkdownのRust engineとか、パッケージ外でのextendrの使いみち
 
 ------------------------------------------------------------------------
 
@@ -313,7 +331,7 @@ layout: section
 
 1.  Rustのコードを編集
 2.  `rextendr::document()`でRのコードを自動生成（Rustのコードのコンパイルもこれがやってくれる）
-3.  （必要あれば）生成されたコードをRの側でいい感じにラップする（引数のチェックとか）
+3.  （必要あれば）生成されたコードをRの側でいい感じにラップする
 4.  `devtools::load_all()`（やテスト）で動作確認
 
 ------------------------------------------------------------------------
@@ -388,3 +406,199 @@ hello_world()
 ```
 
     #> [1] "Hello world!"
+
+---
+layout: section
+---
+
+# 例1) i32 (integer)を引数に取る関数
+
+------------------------------------------------------------------------
+
+# 自動生成されたRの関数
+
+## Rust
+
+``` rust
+/// @export
+#[extendr]
+fn add(x: i32, y: i32) -> i32 {
+    x + y
+}
+```
+
+## R
+
+``` r
+#' @export
+add <- function(x, y) .Call(wrap__add, x, y)
+```
+
+------------------------------------------------------------------------
+
+# 実行結果
+
+``` r
+devtools::load_all(".")
+
+# 引数の型は i32 だけど実数も渡せる
+add(1, 2)
+```
+
+    #> [1] 3
+
+``` r
+# 長さ1以上だとエラーになる
+add(1:2, 2:3)
+```
+
+    #> Error in add(1:2, 2:3) : 
+    #>   Input must be of length 1. Vector of length >1 given.
+
+---
+layout: section
+---
+
+# 例2) Vec\<i32\>を引数に取る関数
+
+------------------------------------------------------------------------
+
+# 自動生成されたRの関数
+
+## Rust
+
+``` rust
+#[extendr]
+fn mult(x: Vec<i32>, y: i32) -> Vec<i32> {
+    x
+     .iter()
+     .map(|n| n * y)
+     .collect::<Vec<_>>()
+}
+```
+
+## R
+
+``` r
+#' @export
+mult <- function(x, y) .Call(wrap__mult, x, y)
+```
+
+------------------------------------------------------------------------
+
+# 実行結果
+
+``` r
+devtools::load_all(".")
+
+mult(1:5, 10)
+```
+
+    #> [1] 10 20 30 40 50
+
+---
+layout: section
+---
+
+# 例3) struct
+
+------------------------------------------------------------------------
+
+# struct…?
+
+-   環境としてエクスポートされるので状態を持つことができる
+-   たまに便利（正規表現のキャッシュを持たせている例:
+    [rr4r](https://github.com/yutannihilation/rr4r)）
+
+------------------------------------------------------------------------
+
+# 自動生成されたRの関数
+
+## Rust
+
+<div class="grid grid-cols-2 gap-4">
+
+<div>
+
+``` rust
+struct Counter {
+  i: i32,
+}
+```
+
+</div>
+
+<div>
+
+``` rust
+/// @export
+#[extendr]
+impl Counter {
+  fn new() -> Self {
+    Self { i: 0 }
+  }
+
+  fn count(&mut self) -> i32 {
+    self.i = self.i + 1;
+    self.i
+  }
+}
+```
+
+</div>
+
+</div>
+
+------------------------------------------------------------------------
+
+# 自動生成されたRの関数
+
+## R
+
+``` r
+#' @export
+Counter <- new.env(parent = emptyenv())
+
+Counter$new <- function() .Call(wrap__Counter__new)
+
+Counter$count <- function() .Call(wrap__Counter__count, self)
+
+#' @rdname Counter
+#' @usage NULL
+#' @export
+`$.Counter` <- function (self, name) { func <- Counter[[name]]; environment(func) <- environment(); func }
+```
+
+------------------------------------------------------------------------
+
+# 実行結果
+
+``` r
+devtools::load_all(".")
+
+cnt <- Counter$new()
+cnt$count()
+```
+
+    #> [1] 1
+
+``` r
+cnt$count()
+```
+
+    #> [1] 2
+
+---
+layout: section
+---
+
+# まとめ
+
+------------------------------------------------------------------------
+
+# まとめ
+
+-   extendrを使うとマクロの魔術でRustの関数からRの関数を生成してくれる。
+-   関数の引数の対応づけはRcppやcpp11と同じノリ。慣れている人はわりとすぐに使えるはず。
+    -   ちなみに、今回はすべてRustのデータ型に変換するタイプだったが、SEXPのまま扱うこともできる（ここはよく理解できていない）
+-   フィードバックお待ちしています！
