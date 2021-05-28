@@ -1,31 +1,25 @@
 ---
-title: test
+title: "RパッケージでRustを使うには: extendr入門"
 output:
   md_document:
     variant: "markdown_github"
     preserve_yaml: true
 
-# try also 'default' to start simple
 theme: default
-background: https://raw.githubusercontent.com/yutannihilation/wgpu-practice/faaf2a2db239a69e7179f840ff6d2f6bab3aaacb/sphere/out.gif
-# apply any windi css classes to the current slide
-class: 'text-center'
-# https://sli.dev/custom/highlighters.html
+background: ./images/top.gif
 highlighter: shiki
-# some information about the slides, markdown enabled
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-
-# TODO: PDFをダウンロードできるようにする
-# download: true
+  ## Slides for Tokyo.R#92
+  
+  [第92回R勉強会@東京](https://tokyor.connpass.com/event/213524/)のスライドです 
 ---
 
 # RパッケージでRustを使うには: extendr入門
 
-------------------------------------------------------------------------
+---
+layout: image-right
+image: './images/icon.png'
+---
 
 # ドーモ！
 
@@ -34,8 +28,6 @@ info: |
 # extendrとは？
 
 ![](https://raw.githubusercontent.com/extendr/extendr/master/extendr-logo-256.png)
-
-------------------------------------------------------------------------
 
 # なぜRust？
 
@@ -46,5 +38,3 @@ info: |
 ``` r
 devtools::install_github("extendr/rextendr")
 ```
-
-------------------------------------------------------------------------
