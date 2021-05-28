@@ -5,7 +5,11 @@ output:
     variant: "markdown_github"
     preserve_yaml: true
 
+defaults:
+  class: 'font-medium'
+
 theme: default
+class: 'text-center'
 background: ./images/top.gif
 highlighter: shiki
 info: |
@@ -23,11 +27,18 @@ image: './images/icon.png'
 
 # ドーモ！
 
+<mdi-twitter style="display: inline"/>: @yutannihilation
+
+-   最近の趣味：ガスコンロの楽器をつくってます
+-   好きな言語：R、Rust、忍殺語
+
 ------------------------------------------------------------------------
 
 # extendrとは？
 
 ![](https://raw.githubusercontent.com/extendr/extendr/master/extendr-logo-256.png)
+
+------------------------------------------------------------------------
 
 # なぜRust？
 
@@ -37,4 +48,5 @@ image: './images/icon.png'
 
 ``` r
 devtools::install_github("extendr/rextendr")
+test
 ```

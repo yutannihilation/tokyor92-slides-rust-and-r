@@ -1,12 +1,32 @@
+/*
+  Resources can be found here:
+    - https://windicss.org/utilities/typography.html
+    - https://windicss.org/features/directives.html
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@500&family=Noto+Sans+JP:wght@500;900&display=swap');
 
-h1 {
+.slidev-layout {
+  @apply px-14 py-10 text-3xl;
   font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 900;
+  font-weight: 500;
+
+  h1, h2, h3, h4, p, div {
+    @apply select-none leading-tight;
+    font-weight: 900;
+  }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  pre, code {
+    @apply text-2xl;
+    font-family: 'Fira Code', monospace;
+  }
+
+  a {
+    color: theme('colors.primary');
+  }
 }
 
-code {
-  font-family: 'Fira Code', monospace;
-  font-size: large;
-  font-weight: 500;
-}
