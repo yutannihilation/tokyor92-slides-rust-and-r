@@ -100,11 +100,12 @@ layout: section
 
 ## macOS / Linux:
 
-ふつうにRustをインストール（ググってください）
+-   ふつうにRustをインストール（ググってください）
 
 ## Windows
 
-MSVCのtoolchainに加えて、64bit/32bit GNU用のtargetを追加する必要がある
+-   MSVCのtoolchainに加えて、64bit/32bit
+    GNU用のtargetを追加する必要がある
 
 ``` bash
 rustup default stable-msvc
@@ -116,7 +117,7 @@ rustup target add i686-pc-windows-gnu
 
 # rextendrパッケージのインストール
 
-GitHubからインストール
+-   GitHubからインストール
 
 ``` r
 devtools::install_github("extendr/rextendr")
@@ -127,3 +128,5 @@ layout: section
 ---
 
 # パッケージ作成
+
+------------------------------------------------------------------------
