@@ -1,11 +1,6 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# Slides for Tokyo R Meetup \#92
 
-To start the slide show:
+## Licenses
 
-- `npm install`
-- `npm run dev`
-- visit http://localhost:3030
+* extendr's logo is distributed under the terms of CC-BY-SA 4.0 at <https://github.com/extendr/artwork>.
 
-Edit the [slides.md](./slides.md) to see the changes.
-
-Learn more about Slidev on [documentations](https://sli.dev/).
