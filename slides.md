@@ -48,7 +48,11 @@ layout: image-right
 image: './images/book.jpg'
 ---
 
-# RユーザーのためのRStudio\[実践\]入門 第2版！
+# RユーザのためのRStudio\[実践\]入門 第2版！
+
+紙は6月3日、電子は5月31日発売です。
+
+<https://gihyo.jp/book/2021/978-4-297-12170-9>
 
 ---
 layout: section
@@ -66,7 +70,7 @@ layout: section
 -   RからRustを使うだけではなく、RustからRを使うこともできる（つまり、Rustの中でggplot2を呼び出してプロットしたり、とかできるらしい）
 -   なぜか私も中の人です…
 
-<img src="/public/images/extendr-logo.png" width="200" />
+[<img src="/public/images/extendr-logo.png" width="200" />](https://github.com/extendr/extendr)
 
 ---
 layout: statement
@@ -102,9 +106,9 @@ APIに[bindgen](https://github.com/rust-lang/rust-bindgen)で生成したバイ�
 
 libR-sysを使いやすくラップしたフレームワーク
 
-## rextendr（Rパッケージ）:
+## <span class="text-red-600">r</span>extendr（Rパッケージ）:
 
-Rからextendrを使う際のヘルパーパッケージ（usethisパッケージのような立ち位置）
+Rからextendrを使うためのユーティリティ（usethisパッケージのような立ち位置）
 
 ---
 layout: section
@@ -222,11 +226,11 @@ rextendr::use_extendr()
 
 ------------------------------------------------------------------------
 
-# 編集する必要があるファイル
+# いじるファイル
 
 ## src/rust:
 
-extendrを使ったRustのcrate。基本的に開発のメインはここになる。
+extendrを使ったRustのcrate。開発のメインはここ。
 
 ------------------------------------------------------------------------
 
