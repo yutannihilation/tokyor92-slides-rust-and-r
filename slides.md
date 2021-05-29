@@ -16,6 +16,7 @@ info: |
   ## Slides for Tokyo.R#92
   
   [第92回R勉強会@東京](https://tokyor.connpass.com/event/213524/)のスライドです 
+download: true
 ---
 
 # Rパッケージで<br/>Rustを使うには:<br/> extendr入門

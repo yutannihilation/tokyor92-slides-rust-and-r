@@ -10,5 +10,8 @@
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   },
-  "name": "tokyor92-slides-rust-and-r"
+  "name": "tokyor92-slides-rust-and-r",
+  "devDependencies": {
+    "playwright-chromium": "^1.11.1"
+  }
 }
