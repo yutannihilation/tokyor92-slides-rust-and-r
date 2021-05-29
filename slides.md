@@ -653,3 +653,17 @@ layout: section
 -   関数の引数の対応づけはRcppやcpp11と同じノリ。慣れている人はわりとすぐに使えるはず。
     -   ちなみに、今回はすべてRustのデータ型に変換するタイプだったが、SEXPのまま扱うこともできる（ここはよく理解できていない）
 -   フィードバックお待ちしています！
+
+------------------------------------------------------------------------
+
+# r-wakalangにrustチャンネルをつくりました
+
+[<img src="/images/screenshot_r-wakalang.png" width="450" />](https://r-wakalang.slack.com/archives/C023FCNPV8B)
+
+------------------------------------------------------------------------
+
+# References
+
+-   extendr: <https://github.com/extendr/extendr>
+-   extendrのロゴはCC-BY-SA 4.0ライセンスで配布されています:
+    <https://github.com/extendr/artwork>.
