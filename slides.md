@@ -60,7 +60,7 @@ layout: section
 
 # extendr
 
-<img src="/public/images/extendr-logo.png" width="600" />
+<img src="/images/extendr-logo.png" width="600" />
 
 ------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ layout: section
 -   RからRustを使うだけではなく、RustからRを使うこともできる（つまり、Rustの中でggplot2を呼び出してプロットしたり、とかできるらしい）
 -   なぜか私も中の人です…
 
-[<img src="/public/images/extendr-logo.png" width="200" />](https://github.com/extendr/extendr)
+[<img src="/images/extendr-logo.png" width="200" />](https://github.com/extendr/extendr)
 
 ---
 layout: statement
@@ -78,11 +78,11 @@ layout: statement
 
 # なぜRust？
 
-<v-clicks>
+<v-click>
 
-→ そこにRustがあるから！！<br>（誰か教えてください…）
+→ そこにRustがあるから！！<br/>（誰か教えてください…）
 
-</v-clicks>
+</v-click>
 
 ------------------------------------------------------------------------
 
@@ -97,18 +97,30 @@ layout: statement
 
 # extendrの愉快な仲間たち
 
+<v-click>
+
 ## libR-sys（Rust）:
 
 RのC
 APIに[bindgen](https://github.com/rust-lang/rust-bindgen)で生成したバインディング
 
+</v-click>
+
+<v-click>
+
 ## extendr（Rust）:
 
 libR-sysを使いやすくラップしたフレームワーク
 
+</v-click>
+
+<v-click>
+
 ## <span class="text-red-600">r</span>extendr（Rパッケージ）:
 
 Rからextendrを使うためのユーティリティ（usethisパッケージのような立ち位置）
+
+</v-click>
 
 ---
 layout: section
@@ -157,7 +169,7 @@ layout: section
 
 <div class="container content-center justify-center">
 
-<img src="/public/images/screenshot_1_create_package.png" style="width:70.0%;height:70.0%" />
+<img src="/images/screenshot_1_create_package.png" style="width:70.0%;height:70.0%" />
 
 </div>
 
@@ -189,7 +201,7 @@ usethis::use_namespace()
 rextendr::use_extendr()
 ```
 
-<v-clicks>
+<v-click>
 
 ``` r
 ✓ Creating src/rust/src.
@@ -205,7 +217,7 @@ rextendr::use_extendr()
 • Please run `rextendr::document()` for changes to take effect.
 ```
 
-</v-clicks>
+</v-click>
 
 ------------------------------------------------------------------------
 
@@ -289,11 +301,17 @@ extendr_module! {
 
 # src/rust/src/lib.rs
 
+<v-click>
+
 -   よく使う関数をまとめて読み込み
 
 ``` rust
 use extendr_api::prelude::*;
 ```
+
+</v-click>
+
+<v-click>
 
 -   `///`（3つ）のコメントはそのままRoxygenのコメントになる
 
@@ -302,11 +320,17 @@ use extendr_api::prelude::*;
 /// @export
 ```
 
+</v-click>
+
+<v-click>
+
 -   これをつけるとRの関数が自動生成！
 
 ``` rust
 #[extendr]
 ```
+
+</v-click>
 
 ------------------------------------------------------------------------
 
@@ -333,10 +357,14 @@ layout: section
 
 # 開発の流れ
 
+<v-clicks>
+
 1.  Rustのコードを編集
 2.  `rextendr::document()`でRのコードを自動生成（Rustのコードのコンパイルもこれがやってくれる）
 3.  （必要あれば）生成されたコードをRの側でいい感じにラップする
 4.  `devtools::load_all()`（やテスト）で動作確認
+
+</v-clicks>
 
 ------------------------------------------------------------------------
 
@@ -591,6 +619,25 @@ cnt$count()
 ```
 
     #> [1] 2
+
+---
+layout: section
+---
+
+# その他こまごました話<br/>（時間があれば）
+
+------------------------------------------------------------------------
+
+# その他
+
+<v-clicks>
+
+-   文字列関連はlifetimeを意識しないと使えないので初心者にはハードモード。数値計算系からはじめるのがおすすめ。
+-   Windowsのセットアップはやや面倒だけど、GitHub
+    Actionsでビルド済みのバイナリを配布したりできるはず（調査中）
+-   CRANにはすでにextendrを使っているパッケージも存在する
+
+</v-clicks>
 
 ---
 layout: section
